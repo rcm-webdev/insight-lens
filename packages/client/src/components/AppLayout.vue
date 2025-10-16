@@ -18,12 +18,32 @@
         <aside class="sidebar">
           <nav>
             <ul>
-              <li><a href="#" :class="{ active: activeRoute === 'dashboard' }">Dashboard</a></li>
-              <li><a href="#" :class="{ active: activeRoute === 'upload' }">Upload Images</a></li>
-              <li><a href="#" :class="{ active: activeRoute === 'models' }">Models</a></li>
-              <li><a href="#" :class="{ active: activeRoute === 'rules' }">Rules</a></li>
-              <li><a href="#" :class="{ active: activeRoute === 'audit' }">Audit Logs</a></li>
-            </ul>
+            <li>
+              <router-link to="/" :class="{ active: isActive('/') }">
+                Dashboard
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/upload" :class="{ active: isActive('/upload') }">
+                Upload Images
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/models" :class="{ active: isActive('/models') }">
+                Models
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/rules" :class="{ active: isActive('/rules') }">
+                Rules
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/audit" :class="{ active: isActive('/audit') }">
+                Audit Logs
+              </router-link>
+            </li>
+          </ul>
           </nav>
         </aside>
   
@@ -40,10 +60,14 @@
   </template>
   
   <script setup lang="ts">
-  import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
   
-  // Track active route (we'll connect this to Vue Router later)
-  const activeRoute = ref<string>('dashboard')
+
+const route = useRoute()
+
+const isActive = (path: string): boolean => {
+  return route.path === path
+}
   </script>
   
   <style scoped>
@@ -99,7 +123,8 @@
   
   .sidebar nav ul li a.active {
     background-color: var(--primary);
-    color: white;
+    color: cyan;
+    font-weight: 500;
   }
   
   .content {
