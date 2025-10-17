@@ -1,4 +1,3 @@
-<!-- src/views/UploadView.vue -->
 <script setup lang="ts">
 import { ref } from 'vue';
 import FileUploader from '@/components/features/FileUploader.vue';
